@@ -2,9 +2,9 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 
-namespace WaterAmericaMoveSite
+namespace LocalTests
 {
-    class Tests
+    class LocalTests
     {
         IWebDriver webDriver;
 
