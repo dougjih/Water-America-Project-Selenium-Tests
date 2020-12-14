@@ -37,6 +37,8 @@ namespace LocalTests
                 var webElement = webDriver.FindElement(By.XPath("//input[@value='Login']"));
                 webElement.Click();
             }
+
+            Assert.AreEqual(webDriver.Url, "http://localhost/Water-America-Project/welcome.php");
         }
     }
 }
