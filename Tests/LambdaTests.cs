@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Common;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using System;
@@ -15,6 +16,7 @@ namespace LambdaTests
         private string browser;
         private string version;
         private string os;
+        TestsImpl testsImpl;
 
         public LambdaTests(string browser, string version, string os)
         {
@@ -39,6 +41,8 @@ namespace LambdaTests
 #pragma warning restore CS0618e
                 return capabilities;
             }
+
+            testsImpl = new TestsImpl(webDriver);
         }
 
         [TearDown]
@@ -50,22 +54,7 @@ namespace LambdaTests
         [Test]
         public void LoadLoginPageAndLogin()
         {
-            webDriver.Url = "http://localhost/Water-America-Project/login.php";
-
-            {
-                var webElement = webDriver.FindElement(By.XPath("//input[@name='username']"));
-                webElement.SendKeys("customerlogin");
-            }
-            {
-                var webElement = webDriver.FindElement(By.XPath("//input[@name='password']"));
-                webElement.SendKeys("customerpassword");
-            }
-            {
-                var webElement = webDriver.FindElement(By.XPath("//input[@value='Login']"));
-                webElement.Click();
-            }
-
-            Assert.AreEqual(webDriver.Url, "http://localhost/Water-America-Project/welcome.php");
+            testsImpl.LoadLoginPageAndLogin();
         }
     }
 }
