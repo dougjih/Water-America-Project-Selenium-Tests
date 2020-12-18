@@ -8,13 +8,13 @@ namespace LocalTests
     class LocalTests
     {
         IWebDriver webDriver;
-        TestsImpl testsImple;
+        TestsImpl testsImpl;
 
         [SetUp]
         public void start_Browser()
         {
             webDriver = new FirefoxDriver();
-            testsImple = new TestsImpl(webDriver);
+            testsImpl = new TestsImpl(webDriver);
         }
 
         [TearDown]
@@ -24,9 +24,11 @@ namespace LocalTests
         }
 
         [Test]
-        public void LoadLoginPageAndLogin()
+        [TestCase("customerlogin", "customerpassword", true)]
+        [TestCase("qwerty", "qwerty", false)]
+        public void LoadLoginPageAndLogin(string username, string password, bool expectedSuccess)
         {
-            testsImple.LoadLoginPageAndLogin();
+            testsImpl.LoginPageLogin(username, password, expectedSuccess);
         }
     }
 }

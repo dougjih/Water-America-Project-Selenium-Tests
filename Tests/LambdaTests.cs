@@ -52,9 +52,11 @@ namespace LambdaTests
         }
 
         [Test]
-        public void LoadLoginPageAndLogin()
+        [TestCase("customerlogin", "customerpassword", true)]
+        [TestCase("qwerty", "qwerty", false)]
+        public void LoadLoginPageAndLogin(string username, string password, bool expectedSuccess)
         {
-            testsImpl.LoadLoginPageAndLogin();
+            testsImpl.LoginPageLogin(username, password, expectedSuccess);
         }
     }
 }
